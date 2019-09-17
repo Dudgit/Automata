@@ -37,17 +37,13 @@ int searchin(std::string drink){
 int main(int, char**) {
 
 
-    std::string first_drink;
     std::cout<< "What kind of drink would you like?" <<std::endl;
-    std::cin>> first_drink;
     std::string string_object;
-    int i =searchin(first_drink);
-    if(i<1){std::cout<<"Please select a real drink"<<std::endl;}
     
 
     while(1){
         std::cin>> string_object;
-        int i =searchin(first_drink);
+        int i =searchin(string_object);
         if(i<1){std::cout<<"Please select a real drink"<<std::endl;}
         std::cout<<"Please type exit if you are finished"<<std::endl;
         size_t my_bool = string_object.find("exit");
