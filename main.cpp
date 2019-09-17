@@ -6,10 +6,11 @@
 #include <numeric>
 
 
-auto my(std::string what_to_find, std::string find_whitin,double price) {
+auto my_searching_function(std::string what_to_find, std::string find_whitin,double price) {
     int drink_existed = 0;
     auto pricegiver = [price](std::string drink){
         std::cout<<"This drink will cost "<<price <<"Ft"<<std::endl;
+    
     };
 
     auto searching=[pricegiver,what_to_find,find_whitin,price,&drink_existed](){
@@ -19,7 +20,18 @@ auto my(std::string what_to_find, std::string find_whitin,double price) {
             drink_existed++;
             }
     };
+    searching();
     return drink_existed;
+}
+
+
+int searchin(std::string drink){
+    int i =0;
+    i+=my_searching_function("Cola",drink,340);
+    i+=my_searching_function("Tonic",drink,320);
+    i+=my_searching_function("Sprite",drink,330);
+    i+=my_searching_function("Natur Aqua",drink,250);
+    return i;
 }
 
 int main(int, char**) {
@@ -28,13 +40,18 @@ int main(int, char**) {
     std::string first_drink;
     std::cout<< "What kind of drink would you like?" <<std::endl;
     std::cin>> first_drink;
-    
-    int i =0;
-    i+=my("Cola",first_drink,340);
-    i+=my("Tonic",first_drink,320);
-    i+=my("Sprite",first_drink,330);
-    i+=my("Natur Aqua",first_drink,250);
-
+    std::string string_object;
+    int i =searchin(first_drink);
     if(i<1){std::cout<<"Please select a real drink"<<std::endl;}
     
+
+    while(1){
+        std::cin>> string_object;
+        int i =searchin(first_drink);
+        if(i<1){std::cout<<"Please select a real drink"<<std::endl;}
+        std::cout<<"Please type exit if you are finished"<<std::endl;
+        size_t my_bool = string_object.find("exit");
+        if(my_bool != std::string::npos){exit(0);}
+
+    }
 }
